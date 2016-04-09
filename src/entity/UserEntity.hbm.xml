@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entity.UserEntity" table="user" schema="video">
+        <id name="userId">
+            <column name="user_id" sql-type="int(11)"/>
+        </id>
+        <property name="username">
+            <column name="username" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="password">
+            <column name="password" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="userType">
+            <column name="user_type" sql-type="enum('normal', 'artist')"/>
+        </property>
+        <property name="registerDate">
+            <column name="register_date" sql-type="datetime"/>
+        </property>
+        <property name="email">
+            <column name="email" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="imagePath">
+            <column name="image_path" sql-type="text" not-null="true"/>
+        </property>
+        <property name="sex">
+            <column name="sex" sql-type="enum('male', 'female')"/>
+        </property>
+        <property name="birthday">
+            <column name="birthday" sql-type="datetime" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="entity.VideoEntity" table="video" schema="video">
+        <id name="videoId">
+            <column name="video_id" sql-type="int(11)"/>
+        </id>
+        <property name="file">
+            <column name="file" sql-type="blob"/>
+        </property>
+        <property name="firstType">
+            <column name="first_type" sql-type="enum('origin', 'share')"/>
+        </property>
+        <property name="secondType">
+            <column name="second_type" sql-type="varchar(20)" length="20" not-null="true"/>
+        </property>
+        <property name="status">
+            <column name="status" sql-type="enum('pass', 'wait')"/>
+        </property>
+        <property name="videoName">
+            <column name="video_name" sql-type="varchar(20)" length="20"/>
+        </property>
+        <property name="collectTime">
+            <column name="collect_time" sql-type="int(11)"/>
+        </property>
+        <property name="downloadTime">
+            <column name="download_time" sql-type="int(11)"/>
+        </property>
+        <property name="uploadDate">
+            <column name="upload_date" sql-type="datetime"/>
+        </property>
+        <property name="isPublic">
+            <column name="is_public" sql-type="enum('true', 'false')"/>
+        </property>
+        <property name="reason">
+            <column name="reason" sql-type="text" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
