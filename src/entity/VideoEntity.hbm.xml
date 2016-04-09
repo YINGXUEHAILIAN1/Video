@@ -15,7 +15,7 @@
             <column name="first_type" sql-type="enum('origin', 'share')"/>
         </property>
         <property name="secondType">
-            <column name="second_type" sql-type="varchar(20)" length="20" not-null="true"/>
+            <column name="second_type" sql-type="varchar(20)" length="20" not-null="false"/>
         </property>
         <property name="status">
             <column name="status" sql-type="enum('pass', 'wait')"/>
@@ -36,7 +36,7 @@
             <column name="is_public" sql-type="enum('true', 'false')"/>
         </property>
         <property name="reason">
-            <column name="reason" sql-type="text" not-null="true"/>
+            <column name="reason" sql-type="text" not-null="false"/>
         </property>
     </class>
 </hibernate-mapping>

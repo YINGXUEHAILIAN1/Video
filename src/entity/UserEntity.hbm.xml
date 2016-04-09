@@ -32,11 +32,11 @@
         <property name="birthday">
             <column name="birthday" sql-type="datetime" not-null="false"/>
         </property>
-        <set name="collections">
+        <set name="collections" lazy="false">
             <key column="video_id"></key>
             <one-to-many class="entity.VideoEntity"></one-to-many>
         </set>
-        <set name="downloads">
+        <set name="downloads" lazy="false">
             <key column="video_id"></key>
             <one-to-many class="entity.VideoEntity"/>
         </set>
