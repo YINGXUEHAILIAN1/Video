@@ -21,7 +21,6 @@ public class UserDAO extends Dao {
             rollback();
             e.printStackTrace();
         }
-
         return user;
     }
 
@@ -47,6 +46,7 @@ public class UserDAO extends Dao {
         video.setStatus(Constant.WAIT);
         video.setUploadDate(new java.sql.Date(System.currentTimeMillis()));
         video.setVideoName("f");
+        video.setUploadUser(user);
         dao.save(video);
         user.getCollections().add(video);
         dao.update(user);

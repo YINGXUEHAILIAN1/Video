@@ -1,5 +1,7 @@
 package entity;
 
+import constant.Constant;
+
 import java.sql.Date;
 import java.util.Arrays;
 
@@ -7,17 +9,38 @@ import java.util.Arrays;
  * Created by Uther on 2016/4/9.
  */
 public class VideoEntity {
+
     private int videoId;
     private byte[] file;
-    private String firstType;
-    private String secondType;
-    private String status;
     private String videoName;
-    private int collectTime;
-    private int downloadTime;
-    private Date uploadDate;
-    private String isPublic;
-    private String reason;
+    private UserEntity uploadUser;
+
+    private int collectTime = 0;
+    private int downloadTime = 0;
+    private Date uploadDate = new Date(System.currentTimeMillis());
+    private String isPublic = Constant.NOT_PUBLIC;
+    private String reason = null;
+    private String firstType = Constant.SHARE;
+    private String secondType = null;
+    private String status = Constant.WAIT;
+
+    public VideoEntity(){
+
+    }
+
+    public VideoEntity(String videoName,UserEntity uploadUser,byte[] file){
+        this.videoName = videoName;
+        this.uploadUser = uploadUser;
+        this.file = file;
+    }
+
+    public UserEntity getUploadUser() {
+        return uploadUser;
+    }
+
+    public void setUploadUser(UserEntity uploadUser) {
+        this.uploadUser = uploadUser;
+    }
 
     public int getVideoId() {
         return videoId;

@@ -7,9 +7,18 @@ import java.sql.Date;
  */
 public class CollectLogEntity {
     private int collectId;
-    private Date collectDate;
     private UserEntity user;
     private VideoEntity video;
+
+    private Date collectDate = new Date(System.currentTimeMillis());
+
+    public CollectLogEntity() {
+    }
+
+    public CollectLogEntity(UserEntity user, VideoEntity video) {
+        this.user = user;
+        this.video = video;
+    }
 
     public VideoEntity getVideo() {
         return video;

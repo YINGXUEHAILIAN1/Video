@@ -1,5 +1,7 @@
 package entity;
 
+import constant.Constant;
+
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,14 +13,23 @@ public class UserEntity {
     private int userId;
     private String username;
     private String password;
-    private String userType;
-    private Date registerDate;
-    private String email;
-    private String imagePath;
-    private String sex;
-    private Date birthday;
+
+    private String userType = Constant.NORMAL;
+    private Date registerDate = new Date(System.currentTimeMillis());
+    private String email = null;
+    private String imagePath = null;
+    private String sex = Constant.MALE;
+    private Date birthday = null;
     private Set<VideoEntity> downloads = new HashSet<>();
     private Set<VideoEntity> collections = new HashSet<>();
+
+    public UserEntity(){
+    }
+
+    public UserEntity(String username,String password){
+        this.username = username;
+        this.password = password;
+    }
 
     public Set<VideoEntity> getDownloads() {
         return downloads;

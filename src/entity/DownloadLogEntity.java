@@ -7,9 +7,19 @@ import java.sql.Date;
  */
 public class DownloadLogEntity {
     private int downloadId;
-    private Date downloadDate;
     private UserEntity user;
     private VideoEntity video;
+
+    private Date downloadDate = new Date(System.currentTimeMillis());
+
+
+    public DownloadLogEntity(){}
+
+    public DownloadLogEntity(UserEntity user,VideoEntity video){
+        this.user = user;
+        this.video = video;
+    }
+
 
     public UserEntity getUser() {
         return user;

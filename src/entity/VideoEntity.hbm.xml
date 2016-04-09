@@ -38,5 +38,8 @@
         <property name="reason">
             <column name="reason" sql-type="text" not-null="false"/>
         </property>
+        <many-to-one name="uploadUser" column="upload_user" class="entity.UserEntity" lazy="false">
+            
+        </many-to-one>
     </class>
 </hibernate-mapping>
