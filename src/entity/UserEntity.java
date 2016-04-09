@@ -1,6 +1,8 @@
 package entity;
 
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Uther on 2016/4/9.
@@ -15,6 +17,24 @@ public class UserEntity {
     private String imagePath;
     private String sex;
     private Date birthday;
+    private Set<VideoEntity> downloads = new HashSet<>();
+    private Set<VideoEntity> collections = new HashSet<>();
+
+    public Set<VideoEntity> getDownloads() {
+        return downloads;
+    }
+
+    public void setDownloads(Set<VideoEntity> downloads) {
+        this.downloads = downloads;
+    }
+
+    public Set<VideoEntity> getCollections() {
+        return collections;
+    }
+
+    public void setCollections(Set<VideoEntity> collections) {
+        this.collections = collections;
+    }
 
     public int getUserId() {
         return userId;

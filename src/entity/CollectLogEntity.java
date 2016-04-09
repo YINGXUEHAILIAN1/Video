@@ -8,6 +8,24 @@ import java.sql.Date;
 public class CollectLogEntity {
     private int collectId;
     private Date collectDate;
+    private UserEntity user;
+    private VideoEntity video;
+
+    public VideoEntity getVideo() {
+        return video;
+    }
+
+    public void setVideo(VideoEntity video) {
+        this.video = video;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
 
     public int getCollectId() {
         return collectId;

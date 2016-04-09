@@ -8,6 +8,24 @@ import java.sql.Date;
 public class DownloadLogEntity {
     private int downloadId;
     private Date downloadDate;
+    private UserEntity user;
+    private VideoEntity video;
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    public VideoEntity getVideo() {
+        return video;
+    }
+
+    public void setVideo(VideoEntity video) {
+        this.video = video;
+    }
 
     public int getDownloadId() {
         return downloadId;

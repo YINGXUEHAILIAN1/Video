@@ -32,5 +32,13 @@
         <property name="birthday">
             <column name="birthday" sql-type="datetime" not-null="true"/>
         </property>
+        <set name="collections">
+            <key column="video_id"></key>
+            <one-to-many class="entity.VideoEntity"></one-to-many>
+        </set>
+        <set name="downloads">
+            <key column="video_id"></key>
+            <one-to-many class="entity.VideoEntity"/>
+        </set>
     </class>
 </hibernate-mapping>
