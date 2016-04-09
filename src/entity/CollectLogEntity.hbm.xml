@@ -11,9 +11,9 @@
         <property name="collectDate">
             <column name="collect_date" sql-type="datetime"/>
         </property>
-        <many-to-one name="user" column="collect_id" class="entity.UserEntity">
+        <many-to-one name="user" column="collect_user" class="entity.UserEntity">
         </many-to-one>
-        <many-to-one name="video" column="collect_id" class="entity.VideoEntity">
+        <many-to-one name="video" column="collect_video" class="entity.VideoEntity">
         </many-to-one>
     </class>
 </hibernate-mapping>

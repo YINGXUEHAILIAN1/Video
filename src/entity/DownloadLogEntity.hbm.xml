@@ -11,10 +11,10 @@
         <property name="downloadDate">
             <column name="download_date" sql-type="datetime"/>
         </property>
-        <many-to-one name="user" column="download_id" class="entity.UserEntity">
+        <many-to-one name="user" column="download_user" class="entity.UserEntity">
 
         </many-to-one>
-        <many-to-one name="video" class="entity.VideoEntity" column="download_id">
+        <many-to-one name="video" class="entity.VideoEntity" column="download_video">
 
         </many-to-one>
     </class>
