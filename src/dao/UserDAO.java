@@ -3,6 +3,7 @@ package dao;
 import constant.Constant;
 import entity.UserEntity;
 import entity.VideoEntity;
+import org.hibernate.Query;
 
 import java.sql.Date;
 
@@ -24,34 +25,33 @@ public class UserDAO extends Dao {
         return user;
     }
 
+    public UserEntity getUser(String username){
+        UserEntity user = null;
+        try{
+            begin();
+            Query query = getSession().createQuery("from UserEntity where username=:username");
+            query.setParameter("username",username);
+            user = (UserEntity)query.uniqueResult();
+            commit();
+        }catch (Exception e){
+            rollback();
+            e.printStackTrace();
+        }
+
+        return user;
+    }
+
 
     public static void main(String[] args){
-        UserEntity user = new UserEntity();
-        user.setImagePath(null);
-        user.setBirthday(null);
-        user.setEmail(null);
-        user.setPassword("a");
-        user.setUsername("b");
-        user.setSex(Constant.MALE);
-        user.setUserType(Constant.ARTIST);
-        user.setRegisterDate(new java.sql.Date(System.currentTimeMillis()));
+        UserEntity user = new UserEntity("asdasd","s");
         UserDAO dao = new UserDAO();
         dao.save(user);
-
-        VideoEntity video = new VideoEntity();
-        video.setFile(new byte[10]);
-        video.setFirstType(Constant.ORIGIN);
-        video.setSecondType("旅游");
-        video.setIsPublic(Constant.NOT_PUBLIC);
-        video.setStatus(Constant.WAIT);
-        video.setUploadDate(new java.sql.Date(System.currentTimeMillis()));
-        video.setVideoName("f");
-        video.setUploadUser(user);
+        VideoEntity video = new VideoEntity("fff",user,new byte[19]);
         dao.save(video);
         user.getCollections().add(video);
         dao.update(user);
 
-        UserEntity nu = dao.getUser(user.getUserId());
+        UserEntity nu = dao.getUser("asdasd");
         for (VideoEntity v : nu.getCollections()){
             System.out.println(v.getVideoName());
         }

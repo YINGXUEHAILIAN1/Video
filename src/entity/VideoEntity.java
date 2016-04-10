@@ -28,6 +28,12 @@ public class VideoEntity {
 
     }
 
+    /**
+     * 推荐的构造video的函数
+     * @param videoName video名
+     * @param uploadUser 上传用户
+     * @param file 上传文件
+     */
     public VideoEntity(String videoName,UserEntity uploadUser,byte[] file){
         this.videoName = videoName;
         this.uploadUser = uploadUser;

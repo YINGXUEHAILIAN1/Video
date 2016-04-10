@@ -7,6 +7,7 @@
     <class name="entity.DownloadLogEntity" table="download_log" schema="video">
         <id name="downloadId">
             <column name="download_id" sql-type="int(11)"/>
+            <generator class="increment"></generator>
         </id>
         <property name="downloadDate">
             <column name="download_date" sql-type="datetime"/>

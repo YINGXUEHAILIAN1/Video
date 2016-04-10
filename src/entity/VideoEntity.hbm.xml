@@ -7,6 +7,7 @@
     <class name="entity.VideoEntity" table="video" schema="video">
         <id name="videoId">
             <column name="video_id" sql-type="int(11)"/>
+            <generator class="increment"></generator>
         </id>
         <property name="file">
             <column name="file" sql-type="blob"/>

@@ -7,9 +7,10 @@
     <class name="entity.UserEntity" table="user" schema="video">
         <id name="userId">
             <column name="user_id" sql-type="int(11)"/>
+            <generator class="increment"></generator>
         </id>
-        <property name="username">
-            <column name="username" sql-type="varchar(20)" length="20"/>
+        <property name="username" unique="true">
+            <column name="username" sql-type="varchar(20)" length="20" unique="true"/>
         </property>
         <property name="password">
             <column name="password" sql-type="varchar(20)" length="20"/>
