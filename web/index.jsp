@@ -13,6 +13,6 @@
   <body>
     <a href="/UI/demo/datagrid/basic.html">用户管理</a>
     <a href="register.jsp">用户注册</a>
-    <a href="register.jsp">用户注册</a>
+    <a href="login.jsp">用户登录</a>
   </body>
 </html>

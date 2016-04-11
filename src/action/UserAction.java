@@ -111,19 +111,16 @@ public class UserAction extends ActionSupport{
         return SUCCESS;
     }
 
-    public String login(){
-        UserDAO dao = new UserDAO();
-        UserEntity user = dao.getUser(username);
-        if (user != null && user.getPassword().equals(password)){
-            message = "登录成功！";
-            return SUCCESS;
-        }else if (user != null){
-            message = "密码错误！";
-            return "error";
-        }
-        message = "没有此用户";
-        return SUCCESS;
+    private JSONObject status;
+
+    public JSONObject getStatus() {
+        return status;
     }
+
+    public void setStatus(JSONObject status) {
+        this.status = status;
+    }
+
 
     public String editUser(){
         UserDAO dao = new UserDAO();

@@ -10,7 +10,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>用户登录</title>
+    <title>找回密码</title>
     <link rel="stylesheet" type="text/css" href="UI/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="UI/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="UI/demo/demo.css">
@@ -18,9 +18,9 @@
     <script type="text/javascript" src="UI/jquery.easyui.min.js"></script>
 </head>
 <body>
-<h2>用户登录</h2>
+<h2>找回密码</h2>
 <div style="margin:20px 0;"></div>
-<div class="easyui-panel" title="用户登录" style="width:400px">
+<div class="easyui-panel" title="找回密码" style="width:400px">
     <div style="padding:10px 60px 20px 60px">
         <form id="ff" method="post" action="userLogin">
             <table cellpadding="5">
@@ -29,19 +29,16 @@
                     <td><input class="easyui-validatebox textbox" type="text" name="username" data-options="required:true"></input></td>
                 </tr>
                 <tr>
-                    <td>Password:</td>
-                    <td><input class="easyui-validatebox textbox" type="password" name="password" data-options="required:true"></input></td>
+                    <td>Email:</td>
+                    <td><input class="easyui-validatebox textbox" type="text" name="email" data-options="required:true,validType:'email'"></input></td>
                 </tr>
             </table>
         </form>
         <div style="text-align:center;padding:5px">
             <a href="javascript:void(0)" class="easyui-linkbutton" onclick="login()">Submit</a>
             <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">Clear</a>
+        </div>
 
-        </div>
-        <div style="text-align:center;padding:5px">
-            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="go()">Find Password</a>
-        </div>
     </div>
 </div>
 <style scoped="scoped">
@@ -56,7 +53,7 @@
 
     function login(){
         $('#ff').form('submit',{
-            url:"userLogin",
+            url:"findPassword",
             onSubmit: function(){
                 return $(this).form('validate');
             },
@@ -75,9 +72,7 @@
     function clearForm(){
         $('#ff').form('clear');
     }
-    function go(){
-        window.location.href="findPassword.jsp";
-    }
+
 </script>
 </body>
 </html>

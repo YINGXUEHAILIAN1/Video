@@ -9,10 +9,14 @@
     <package name="json-action" extends="struts-default">
         <result-types>
             <result-type name="json" class="org.apache.struts2.json.JSONResult">
-                <!-- 在action的result参数为json-->
-                <param name="root">result</param>
             </result-type>
         </result-types>
+
+        <action name="findPassword" class="action.PasswordAction" method="findPassword">
+            <result name="success" type="json">
+                <param name="json">json</param>
+            </result>
+        </action>
 
         <action name="saveUser" class="action.UserAction" method="saveUser">
             <result name="success" type="json">
@@ -38,14 +42,13 @@
             </result>
         </action>
 
-        <action name="userLogin" class="action.UserAction" method="login">
-            <result name="success">
-                success.jsp
-            </result>
-            <result name="error">
-                error.jsp
+        <action name="userLogin" class="action.UserLoginAction" method="login">
+            <result name="success" type="json">
+                <param name="root">json</param>
             </result>
         </action>
+        
+
 
     </package>
 
