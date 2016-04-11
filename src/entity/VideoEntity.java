@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class VideoEntity {
 
     private int videoId;
-    private byte[] file;
+    private String filePath;
     private String videoName;
     private UserEntity uploadUser;
 
@@ -32,12 +32,12 @@ public class VideoEntity {
      * 推荐的构造video的函数
      * @param videoName video名
      * @param uploadUser 上传用户
-     * @param file 上传文件
+     * @param filePath 上传文件路径
      */
-    public VideoEntity(String videoName,UserEntity uploadUser,byte[] file){
+    public VideoEntity(String videoName,UserEntity uploadUser,String filePath){
         this.videoName = videoName;
         this.uploadUser = uploadUser;
-        this.file = file;
+        this.filePath = filePath;
     }
 
     public UserEntity getUploadUser() {
@@ -56,12 +56,12 @@ public class VideoEntity {
         this.videoId = videoId;
     }
 
-    public byte[] getFile() {
-        return file;
+    public String getFilePath() {
+        return filePath;
     }
 
-    public void setFile(byte[] file) {
-        this.file = file;
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 
     public String getFirstType() {
@@ -146,7 +146,7 @@ public class VideoEntity {
         if (videoId != that.videoId) return false;
         if (collectTime != that.collectTime) return false;
         if (downloadTime != that.downloadTime) return false;
-        if (!Arrays.equals(file, that.file)) return false;
+        if (!filePath.equals(that.filePath)) return false;
         if (firstType != null ? !firstType.equals(that.firstType) : that.firstType != null) return false;
         if (secondType != null ? !secondType.equals(that.secondType) : that.secondType != null) return false;
         if (status != null ? !status.equals(that.status) : that.status != null) return false;
@@ -161,7 +161,7 @@ public class VideoEntity {
     @Override
     public int hashCode() {
         int result = videoId;
-        result = 31 * result + Arrays.hashCode(file);
+        result = 31 * result + (filePath != null ? filePath.hashCode():0);
         result = 31 * result + (firstType != null ? firstType.hashCode() : 0);
         result = 31 * result + (secondType != null ? secondType.hashCode() : 0);
         result = 31 * result + (status != null ? status.hashCode() : 0);

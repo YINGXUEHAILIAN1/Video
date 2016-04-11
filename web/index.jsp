@@ -11,6 +11,8 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+    <a href="/UI/demo/datagrid/basic.html">用户管理</a>
+    <a href="register.jsp">用户注册</a>
+    <a href="register.jsp">用户注册</a>
   </body>
 </html>

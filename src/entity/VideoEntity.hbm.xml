@@ -9,8 +9,8 @@
             <column name="video_id" sql-type="int(11)"/>
             <generator class="increment"></generator>
         </id>
-        <property name="file">
-            <column name="file" sql-type="blob"/>
+        <property name="filePath">
+            <column name="filePath" sql-type="text"/>
         </property>
         <property name="firstType">
             <column name="first_type" sql-type="enum('origin', 'share')"/>

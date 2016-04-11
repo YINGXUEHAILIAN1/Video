@@ -1,8 +1,9 @@
 package entity;
 
 import constant.Constant;
+import org.apache.struts2.json.annotations.JSON;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,6 +36,7 @@ public class UserEntity {
         return downloads;
     }
 
+    @JSON(serialize=false)
     public void setDownloads(Set<VideoEntity> downloads) {
         this.downloads = downloads;
     }
@@ -43,6 +45,7 @@ public class UserEntity {
         return collections;
     }
 
+    @JSON(serialize=false)
     public void setCollections(Set<VideoEntity> collections) {
         this.collections = collections;
     }

@@ -5,4 +5,57 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
+
+    <package name="json-action" extends="struts-default">
+        <result-types>
+            <result-type name="json" class="org.apache.struts2.json.JSONResult">
+                <!-- 在action的result参数为json-->
+                <param name="root">result</param>
+            </result-type>
+        </result-types>
+
+        <action name="saveUser" class="action.UserAction" method="saveUser">
+            <result name="success" type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+
+        <action name="getAllUsers" class="action.UserAction" method="allUsers">
+            <result name="success" type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+
+        <action name="editUser" class="action.UserAction" method="editUser">
+            <result name="success" type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+
+        <action name="deleteUser" class="action.UserAction" method="deleteUser">
+            <result name="success" type="json">
+                <param name="root">json</param>
+            </result>
+        </action>
+
+        <action name="userLogin" class="action.UserAction" method="login">
+            <result name="success">
+                success.jsp
+            </result>
+            <result name="error">
+                error.jsp
+            </result>
+        </action>
+
+    </package>
+
+    <package name="default" extends="struts-default">
+
+        <global-results>
+            <result name="success">/success.jsp</result>
+        </global-results>
+
+    </package>
+
+
 </struts>

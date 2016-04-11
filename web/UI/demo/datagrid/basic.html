@@ -8,25 +8,148 @@
 	<link rel="stylesheet" type="text/css" href="../demo.css">
 	<script type="text/javascript" src="../../jquery.min.js"></script>
 	<script type="text/javascript" src="../../jquery.easyui.min.js"></script>
+    <style type="text/css">
+        #fm{
+            margin:0;
+            padding:10px 30px;
+        }
+        .ftitle{
+            font-size:14px;
+            font-weight:bold;
+            color:#666;
+            padding:5px 0;
+            margin-bottom:10px;
+            border-bottom:1px solid #ccc;
+        }
+        .fitem{
+            margin-bottom:5px;
+        }
+        .fitem label{
+            display:inline-block;
+            width:80px;
+        }
+    </style>
+    <script type="text/javascript">
+        var url;
+        function newUser(){
+            $('#dlg').dialog('open').dialog('setTitle','New User');
+            $('#fm').form('clear');
+            url = 'saveUser';
+        }
+        function editUser(){
+            var row = $('#dg').datagrid('getSelected');
+            if (row){
+                $('#dlg').dialog('open').dialog('setTitle','Edit User');
+                $('#fm').form('load',row);
+                url = 'editUser?id='+row.id;
+            }
+        }
+        function saveUser(){
+            $('#fm').form('submit',{
+                url: url,
+                dataType: "json",
+                onSubmit: function(){
+                    return $(this).form('validate');
+                },
+                success: function(result){
+                    $('#dlg').dialog('close');		// close the dialog
+                    $('#dg').datagrid('reload');	// reload the user data
+                }
+            });
+        }
+        function removeUser(){
+            var row = $('#dg').datagrid('getSelected');
+            if (row){
+                $.messager.confirm('Confirm','Are you sure you want to remove this user?',function(r){
+                    if (r){
+                        $.post('deleteUser',{id:row.id},function(result){
+                            $('#dg').datagrid('reload');	// reload the user data
+                        },'json');
+                    }
+                });
+            }
+        }
+
+        function doSearch(){
+            $('#dg').datagrid('load',{
+                id: $('#id').val(),
+                username: $('#username').val(),
+                type:$('#type').val()
+            });
+        }
+    </script>
 </head>
 <body>
 	<h2>用户管理</h2>
 	<div style="margin:20px 0;"></div>
+
+    <div id="tb" style="padding:3px">
+        <span>User ID:</span>
+        <input id="id" style="line-height:26px;border:1px solid #ccc">
+        <span>Username:</span>
+        <input id="username" style="line-height:26px;border:1px solid #ccc">
+        <span>User Type:</span>
+        <select id="type" style="line-height:26px;border:1px solid #ccc">
+            <option value="all">全部</option>
+            <option value="artist">媒体人</option>
+            <option value="normal">普通</option>
+        </select>
+        <a href="#" class="easyui-linkbutton" plain="true" onclick="doSearch()">Search</a>
+    </div>
 	<div id="toolbar">
 		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">New User</a>
 		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Edit User</a>
-		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove User</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeUser()">Remove User</a>
 	</div>
 	<table class="easyui-datagrid" title="用户信息列表" style="width:700px;height:250px"
-			data-options="singleSelect:true,collapsible:true,url:'getAllUsers',method:'get'">
+			data-options="singleSelect:true,url:'getAllUsers',method:'get'" id="dg" rownumbers="true" fitColumns="true">
 		<thead>
 			<tr>
 				<th data-options="field:'username',width:80">用户名</th>
 				<th data-options="field:'password',width:100">密码</th>
+                <th data-options="field:'type',width:80">用户类型</th>
+                <th data-options="field:'birthday',width:80">生日</th>
 				<th data-options="field:'id',width:80,align:'right'">用户ID</th>
+
 			</tr>
 		</thead>
 	</table>
 
+
+    <div id="dlg" class="easyui-dialog" style="width:800px;height:280px;padding:10px 20px"
+         closed="true" buttons="#dlg-buttons">
+        <div class="ftitle">User Information</div>
+        <form id="fm" method="post" novalidate>
+            <div class="fitem">
+                <label>User Name:</label>
+                <input name="username" class="easyui-validatebox" required="true" validType="length[5,10]">
+            </div>
+            <div class="fitem">
+                <label>Password:</label>
+                <input name="password" class="easyui-validatebox" required="true" validType="length[5,10]">
+            </div>
+            <div class="fitem">
+                <label>Email:</label>
+                <input name="email" class="easyui-validatebox" validType="email">
+            </div>
+            <div class="fitem">
+                <label>Type:</label>
+                <select name="type">
+                    <option value="artist">Artist</option>
+                    <option value="normal">Normal</option>
+                </select>
+            </div>
+
+            <div class="fitem">
+                <label>Birthday:</label>
+                <input class="easyui-datebox" name="birthday"/>
+            </div>
+
+        </form>
+    </div>
+    <div id="dlg-buttons">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">Save</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancel</a>
+    </div>
 </body>
 </html>

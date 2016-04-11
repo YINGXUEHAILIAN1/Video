@@ -6,6 +6,8 @@ import entity.VideoEntity;
 import org.hibernate.Query;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Uther on 2016/4/9.
@@ -23,6 +25,21 @@ public class UserDAO extends Dao {
             e.printStackTrace();
         }
         return user;
+    }
+
+    public List<UserEntity> getAllUsers(){
+        List<UserEntity> list = new ArrayList<>();
+
+        try{
+            begin();
+            list = getSession().createQuery("from UserEntity").list();
+            commit();
+        }catch (Exception e){
+            rollback();
+            e.printStackTrace();
+        }
+
+        return list;
     }
 
     public UserEntity getUser(String username){
@@ -46,7 +63,7 @@ public class UserDAO extends Dao {
         UserEntity user = new UserEntity("asdasd","s");
         UserDAO dao = new UserDAO();
         dao.save(user);
-        VideoEntity video = new VideoEntity("fff",user,new byte[19]);
+        VideoEntity video = new VideoEntity("fff",user,"C:");
         dao.save(video);
         user.getCollections().add(video);
         dao.update(user);
